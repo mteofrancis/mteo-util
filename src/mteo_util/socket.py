@@ -44,6 +44,9 @@ class TcpSocket:
 
   ## {{{ TcpSocket.__init__()
   def __init__(self, sock=None):
+    if sock and type(sock).__name__ != 'socket':
+      raise TypeError(f'sock: invalid type (expecting socket, got {type(sock).__name__})')
+
     if sock is None:
       self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     else:
@@ -52,13 +55,29 @@ class TcpSocket:
     self._fd = self._socket.fileno()
   ## }}}
 
-  ## {{{ TcpSocket.setblocking()
-  def setblocking(self, block=True):
+  def fileobj(self):
+    return self._socket
+
+  def fileno(self):
+    return self._fd
+
+  ## {{{ TcpSocket.blocking()
+  def blocking(self, block=True):
+    if type(block).__name__ != 'bool':
+      raise TypeError(f'block: invalid type (expecting bool, got {type(block).__name__})')
+
     self._socket.setblocking(block)
   ## }}}
 
   ## {{{ TcpSocket.bind()
   def bind(self, address, port, reuse_addr=False):
+    if type(address).__name__ != 'str':
+      raise TypeError(f'address: invalid type (expecting str, got {type(address).__name__})')
+    if type(port).__name__ != 'int':
+      raise TypeError(f'port: invalid type (expecting int, got {type(port).__name__})')
+    if type(reuse_addr).__name__ != 'bool':
+      raise TypeError(f'reuse_addr: invalid type (expecting bool, got {type(reuse_addr).__name__})')
+
     if reuse_addr:
       self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
@@ -67,6 +86,9 @@ class TcpSocket:
 
   ## {{{ TcpSocket.listen()
   def listen(self, backlog=10):
+    if type(backlog).__name__ != 'int':
+      raise TypeError(f'backlog: invalid type (expecting int, got {type(backlog).__name__})')
+
     self._socket.listen(backlog)
   ## }}}
 
@@ -75,8 +97,21 @@ class TcpSocket:
     return self._socket.accept()
   ## }}}
 
+  def connect(self, address, port):
+    if type(address).__name__ != 'str':
+      raise TypeError(f'address: invalid type (expecting str, got {type(address).__name__})')
+    if type(port).__name__ != 'int':
+      raise TypeError(f'port: invalid type (expecting int, got {type(port).__name__})')
+
+    return self._socket.connect((address, port))
+
   ## {{{ TcpSocket.recv()
   def recv(self, size, flags=0):
+    if type(size).__name__ != 'int':
+      raise TypeError(f'size: invalid type (expecting int, got {type(size).__name__})')
+    if type(flags).__name__ != 'int':
+      raise TypeError(f'flags: invalid type (expecting int, got {type(flags).__name__})')
+
     if flags != 0:
       return self._socket.recv(size)
     else:
