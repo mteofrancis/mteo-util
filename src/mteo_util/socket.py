@@ -30,6 +30,8 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
+import mteo_util.tlv as tlv
+
 import socket
 
 ## {{{ class TcpSocket
@@ -44,8 +46,8 @@ class TcpSocket:
 
   ## {{{ TcpSocket.__init__()
   def __init__(self, sock=None):
-    if sock and type(sock).__name__ != 'socket':
-      raise TypeError(f'sock: invalid type (expecting socket, got {type(sock).__name__})')
+    if sock:
+      tlv.assert_type(sock, 'socket', arg='sock')
 
     if sock is None:
       self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -63,20 +65,16 @@ class TcpSocket:
 
   ## {{{ TcpSocket.blocking()
   def blocking(self, block=True):
-    if type(block).__name__ != 'bool':
-      raise TypeError(f'block: invalid type (expecting bool, got {type(block).__name__})')
+    tlv.assert_type(block, 'bool', arg='block')
 
     self._socket.setblocking(block)
   ## }}}
 
   ## {{{ TcpSocket.bind()
   def bind(self, address, port, reuse_addr=False):
-    if type(address).__name__ != 'str':
-      raise TypeError(f'address: invalid type (expecting str, got {type(address).__name__})')
-    if type(port).__name__ != 'int':
-      raise TypeError(f'port: invalid type (expecting int, got {type(port).__name__})')
-    if type(reuse_addr).__name__ != 'bool':
-      raise TypeError(f'reuse_addr: invalid type (expecting bool, got {type(reuse_addr).__name__})')
+    tlv.assert_type(address, 'str', arg='address')
+    tlv.assert_type(port, 'int', arg='port')
+    tlv.assert_type(reuse_addr, 'bool', arg='reuse_addr')
 
     if reuse_addr:
       self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -86,8 +84,7 @@ class TcpSocket:
 
   ## {{{ TcpSocket.listen()
   def listen(self, backlog=10):
-    if type(backlog).__name__ != 'int':
-      raise TypeError(f'backlog: invalid type (expecting int, got {type(backlog).__name__})')
+    tlv.assert_type(backlog, 'int', arg='backlog')
 
     self._socket.listen(backlog)
   ## }}}
@@ -98,19 +95,15 @@ class TcpSocket:
   ## }}}
 
   def connect(self, address, port):
-    if type(address).__name__ != 'str':
-      raise TypeError(f'address: invalid type (expecting str, got {type(address).__name__})')
-    if type(port).__name__ != 'int':
-      raise TypeError(f'port: invalid type (expecting int, got {type(port).__name__})')
+    tlv.assert_type(address, 'str', arg='address')
+    tlv.assert_type(port, 'int', arg='port')
 
     return self._socket.connect((address, port))
 
   ## {{{ TcpSocket.recv()
   def recv(self, size, flags=0):
-    if type(size).__name__ != 'int':
-      raise TypeError(f'size: invalid type (expecting int, got {type(size).__name__})')
-    if type(flags).__name__ != 'int':
-      raise TypeError(f'flags: invalid type (expecting int, got {type(flags).__name__})')
+    tlv.assert_type(size, 'int', arg='size')
+    tlv.assert_type(flags, 'int', arg='flags')
 
     if flags != 0:
       return self._socket.recv(size)
