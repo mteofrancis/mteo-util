@@ -30,8 +30,28 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .socket import *
+## {{{ class Bitmask
+
+class Bitmask:
+
+  _mask = None
+
+  def __init__(self):
+    self.reset()
+
+  def reset(self):
+    self._mask = 0
+
+  def set(self, bit):
+    self._mask |= bit
+
+  def clear(self, bit):
+    self._mask &= ~bit
+
+  def test(self, bit):
+    return self._mask & bit
+
+## class Bitmask }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
