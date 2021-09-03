@@ -13,6 +13,25 @@ PACKAGE_NAME = mteo-util
 all:
 	@$(PYTHON) -m build
 
+.PHONY: check
+check: check-syntax run-testsuite
+
+.PHONY: check-syntax
+check-syntax:
+	@if [[ $$(type -P find-python-syntax-errors) ]]; \
+	then \
+	  echo; \
+	  echo "Checking source tree for syntax errors in Python files..."; \
+	  echo; \
+	  find-python-syntax-errors || exit 1; \
+	fi
+
+.PHONY: run-testsuite
+run-testsuite:
+	@echo "Running test suite..."
+	@echo
+	@$(PYTHON) setup.py nosetests
+
 .PHONY: upload
 upload:
 	@$(TWINE) upload --repository $(PACKAGE_NAME) dist/*
