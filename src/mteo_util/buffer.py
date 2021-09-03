@@ -34,19 +34,29 @@
 
 class Buffer:
 
-  _buf = None
+  """Base class for ByteBuffer and StringBuffer"""
 
-  def __init__(self):
-    self._buf = []
+  _buf = None
+  _len = None
+
+  def __init__(self, buf=None):
+    if not buf:
+      self._buf = []
+      self._len = 0
+    else:
+      self._buf = [buf]
+      self._len = len(buf)
 
   def append(self, buf):
     self._buf.append(buf)
+    self._len += len(buf)
 
-  def size(self):
-    size = 0
-    for buf in self._buf:
-      size += len(buf)
-    return size
+  def clear(self):
+    self._buf = []
+    self._len = 0
+
+  def length(self):
+    return self._len
 
   def get_bytes(self):
     return b''.join(self._buf)
@@ -55,6 +65,30 @@ class Buffer:
     return self.get_bytes().decode('utf-8')
 
 ## class Buffer }}}
+
+## {{{ class ByteBuffer
+
+class ByteBuffer(Buffer):
+
+  def get(self):
+    return b''.join(self._buf)
+
+  def to_str(self, encoding='utf-8'):
+    return self.get().decode(encoding)
+
+## class ByteBuffer }}}
+
+## {{{ class StringBuffer
+
+class StringBuffer(Buffer):
+
+  def get(self):
+    return ''.join(self._buf)
+
+  def to_bytes(self, encoding='utf-8'):
+    return bytes(self.get(), encoding)
+
+## class StringBuffer }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
