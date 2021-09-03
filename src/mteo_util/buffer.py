@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/buffer.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
@@ -30,9 +30,31 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .buffer import *
-from .socket import *
+## {{{ class Buffer
+
+class Buffer:
+
+  _buf = None
+
+  def __init__(self):
+    self._buf = []
+
+  def append(self, buf):
+    self._buf.append(buf)
+
+  def size(self):
+    size = 0
+    for buf in self._buf:
+      size += len(buf)
+    return size
+
+  def get_bytes(self):
+    return b''.join(self._buf)
+
+  def get_str(self):
+    return self.get_bytes().decode('utf-8')
+
+## class Buffer }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
