@@ -47,10 +47,6 @@ class Buffer:
       self._buf = [buf]
       self._len = len(buf)
 
-  def append(self, buf):
-    self._buf.append(buf)
-    self._len += len(buf)
-
   def clear(self):
     self._buf = []
     self._len = 0
@@ -58,19 +54,31 @@ class Buffer:
   def length(self):
     return self._len
 
-  def get_bytes(self):
-    return b''.join(self._buf)
-
-  def get_str(self):
-    return self.get_bytes().decode('utf-8')
-
 ## class Buffer }}}
 
 ## {{{ class ByteBuffer
 
 class ByteBuffer(Buffer):
 
-  def get(self):
+  def __init__(self, buf=None):
+    if buf is None:
+      self._buf = []
+      self._len = 0
+      return
+
+    if type(buf).__name__ != 'bytes':
+      raise TypeError(f'buf: invalid type (expecting bytes, got {type(buf).__name__})')
+
+    self._buf = [buf]
+    self._len = len(buf)
+
+  def append(self, buf):
+    if type(buf).__name__ != 'bytes':
+      raise TypeError(f'buf: invalid type (expecting bytes, got {type(buf).__name__})')
+    self._buf.append(buf)
+    self._len += len(buf)
+
+  def value(self):
     return b''.join(self._buf)
 
   def to_str(self, encoding='utf-8'):
@@ -82,7 +90,25 @@ class ByteBuffer(Buffer):
 
 class StringBuffer(Buffer):
 
-  def get(self):
+  def __init__(self, buf=None):
+    if buf is None:
+      self._buf = []
+      self._len = 0
+      return
+
+    if type(buf).__name__ != 'str':
+      raise TypeError(f'buf: invalid type (expecting str, got {type(buf).__name__})')
+
+    self._buf = [buf]
+    self._len = len(buf)
+
+  def append(self, buf):
+    if type(buf).__name__ != 'str':
+      raise TypeError(f'buf: invalid type (expecting str, got {type(buf).__name__})')
+    self._buf.append(buf)
+    self._len += len(buf)
+
+  def value(self):
     return ''.join(self._buf)
 
   def to_bytes(self, encoding='utf-8'):
