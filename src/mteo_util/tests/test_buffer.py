@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/tests/buffer/test_buffer_init.py
+# mteo-util.git:/src/mteo_util/tests/test_buffer.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
