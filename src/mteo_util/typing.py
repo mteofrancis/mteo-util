@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/typing.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
@@ -30,10 +30,11 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .buffer import *
-from .socket import *
-from .typing import *
+def to_str(obj, encoding='utf-8'):
+  return str(obj, encoding)
+
+def to_bytes(obj, encoding='utf-8'):
+  return bytes(obj, encoding)
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :

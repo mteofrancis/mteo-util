@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/tests/test_typing.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
@@ -30,10 +30,20 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .buffer import *
-from .socket import *
-from .typing import *
+from unittest import TestCase
+
+from mteo_util import (
+  to_bytes,
+  to_str,
+)
+
+class Test(TestCase):
+
+  def test_to_bytes(self):
+    self.assertTrue(to_bytes('foo') == b'foo')
+
+  def test_to_str(self):
+    self.assertTrue(to_str(b'foo') == 'foo')
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
