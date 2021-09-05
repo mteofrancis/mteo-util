@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/string.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
@@ -30,13 +30,13 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .buffer import *
-from .io import *
-from .misc import *
-from .socket import *
-from .string import *
-from .typing import *
+## {{{ index()
+def index(str, needle):
+  try:
+    return str.index(needle)
+  except ValueError:
+    return -1
+## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :

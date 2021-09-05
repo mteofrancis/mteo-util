@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/tests/test_string.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
@@ -30,13 +30,15 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .buffer import *
-from .io import *
-from .misc import *
-from .socket import *
-from .string import *
-from .typing import *
+import unittest
+
+from mteo_util import index
+
+class TestString(unittest.TestCase):
+
+  def test_index(self):
+    self.assertTrue(index('foo', 'f') == 0)
+    self.assertTrue(index('foo', 'F') == -1)
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
