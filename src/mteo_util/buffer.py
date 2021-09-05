@@ -30,7 +30,10 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from . import tlv
+from . import (
+  tlv,
+  typing,
+)
 
 ## {{{ class Buffer
 
@@ -81,7 +84,9 @@ class ByteBuffer(Buffer):
     return b''.join(self._buf)
 
   def to_str(self, encoding='utf-8'):
-    return self.value().decode(encoding)
+    tlv.assert_type(encoding, 'str', arg='encoding')
+
+    return typing.to_str(self.value(), encoding)
 
 ## class ByteBuffer }}}
 
@@ -106,7 +111,8 @@ class StringBuffer(Buffer):
 
   def to_bytes(self, encoding='utf-8'):
     tlv.assert_type(encoding, 'str', arg='encoding')
-    return bytes(self.value(), encoding)
+
+    return typing.to_bytes(self.value(), encoding)
 
 ## class StringBuffer }}}
 
