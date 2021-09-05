@@ -30,6 +30,7 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
+## {{{ assert_type()
 def assert_type(obj, type_name, arg=None):
   obj_type = type(obj)
   if obj_type.__name__ == type_name:
@@ -40,7 +41,9 @@ def assert_type(obj, type_name, arg=None):
     message = arg + ': ' + message
 
   raise TypeError(message)
+## }}}
 
+## {{{ assert_types()
 def assert_types(obj, type_names, arg=None):
   for type_name in type_names:
     obj_type = type(obj)
@@ -53,6 +56,7 @@ def assert_types(obj, type_names, arg=None):
     message = arg + ': ' + message
 
   raise TypeError(message)
+## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
