@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/time.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
@@ -30,14 +30,17 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .buffer import *
-from .io import *
-from .misc import *
-from .socket import *
-from .string import *
-from .time import *
-from .typing import *
+import time
+
+## {{{ time_now()
+def time_now():
+  return int(time.time())
+## }}}
+  
+## {{{ time_diff()
+def time_diff(t1, t2):
+  return t1 - t2
+## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :

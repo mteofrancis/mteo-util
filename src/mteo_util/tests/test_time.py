@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/tests/test_time.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
@@ -30,14 +30,30 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .buffer import *
-from .io import *
-from .misc import *
-from .socket import *
-from .string import *
-from .time import *
-from .typing import *
+import unittest
+
+import time
+
+from mteo_util import (
+  time_now,
+  time_diff,
+)
+
+class TestTime(unittest.TestCase):
+
+  def test_time_now(self):
+    self.assertTrue(type(time_now()) == type(int()))
+    self.assertTrue(time_now() > 0)
+
+    t1 = int(time.time())
+    t2 = time_now()
+    self.assertTrue(t1 == t2 or t1 + 1 == t2)
+
+  def test_time_diff(self):
+    now = time_now()
+    self.assertTrue(time_diff(now, now) == 0)
+    then = now - 5
+    self.assertTrue(time_diff(now, then) == 5)
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
