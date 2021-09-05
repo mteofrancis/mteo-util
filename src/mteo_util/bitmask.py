@@ -36,20 +36,30 @@ class Bitmask:
 
   _mask = None
 
+  ## {{{ Bitmask.__init__()
   def __init__(self):
     self.reset()
+  ## }}}
 
+  ## {{{ Bitmask.reset()
   def reset(self):
     self._mask = 0
+  ## }}}
 
+  ## {{{ Bitmask.set()
   def set(self, bit):
     self._mask |= bit
+  ## }}}
 
+  ## {{{ Bitmask.clear()
   def clear(self, bit):
     self._mask &= ~bit
+  ## }}}
 
+  ## {{{ Bitmask.test()
   def test(self, bit):
     return self._mask & bit
+  ## }}}
 
 ## class Bitmask }}}
 
