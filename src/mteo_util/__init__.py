@@ -33,7 +33,6 @@
 from .bitmask import *
 from .buffer import *
 from .socket import *
-from .tlv import *
 from .typing import *
 
 ##
