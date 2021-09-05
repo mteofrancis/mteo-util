@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/tests/test_random.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
@@ -30,15 +30,18 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .buffer import *
-from .io import *
-from .misc import *
-from .socket import *
-from .random import *
-from .string import *
-from .time import *
-from .typing import *
+import unittest
+
+import uuid
+
+from mteo_util import random_uuid
+
+class TestRandom(unittest.TestCase):
+
+  def test_random_uuid(self):
+    uuid1 = random_uuid()
+    uuid2 = uuid.uuid4()
+    self.assertTrue(len(uuid1) == len(str(uuid2)))
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :

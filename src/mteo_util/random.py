@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/random.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
@@ -30,15 +30,18 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .buffer import *
-from .io import *
-from .misc import *
-from .socket import *
-from .random import *
-from .string import *
-from .time import *
-from .typing import *
+import os
+
+import uuid
+
+## {{{ random_uuid()
+def random_uuid():
+  try:
+    with open('/proc/sys/kernel/random/uuid') as fp:
+      return fp.read().split('\n')[0]
+  except FileNotFoundError:
+    return uuid.uuid4()
+## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
