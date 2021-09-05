@@ -41,6 +41,19 @@ def assert_type(obj, type_name, arg=None):
 
   raise TypeError(message)
 
+def assert_types(obj, type_names, arg=None):
+  for type_name in type_names:
+    obj_type = type(obj)
+    if obj_type.__name__ == type_name:
+      return
+
+  type_names_str = '/'.join(type_names)
+  message = f'invalid type (expecting {type_names_str}, got {obj_type.__name__})'
+  if arg:
+    message = arg + ': ' + message
+
+  raise TypeError(message)
+
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
 ##
