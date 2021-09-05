@@ -57,11 +57,15 @@ class TcpSocket:
     self._fd = self._socket.fileno()
   ## }}}
 
+  ## {{{ TcpSocket.fileobj()
   def fileobj(self):
     return self._socket
+  ## }}}
 
+  ## {{{ TcpSocket.fileno()
   def fileno(self):
     return self._fd
+  ## }}}
 
   ## {{{ TcpSocket.blocking()
   def blocking(self, block=True):
@@ -94,11 +98,13 @@ class TcpSocket:
     return self._socket.accept()
   ## }}}
 
+  ## {{{ TcpSocket.connect()
   def connect(self, address, port):
     tlv.assert_type(address, 'str', arg='address')
     tlv.assert_type(port, 'int', arg='port')
 
     return self._socket.connect((address, port))
+  ## }}}
 
   ## {{{ TcpSocket.recv()
   def recv(self, size, flags=0):
