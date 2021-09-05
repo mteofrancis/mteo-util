@@ -30,9 +30,9 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-import mteo_util.tlv as tlv
-
 import socket
+
+from . import tlv
 
 ## {{{ class TcpSocket
 
