@@ -30,13 +30,13 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from unittest import TestCase
+import unittest
 
 from mteo_util import TcpSocket
 
 import socket
 
-class TestTcpSocket(TestCase):
+class TestTcpSocket(unittest.TestCase):
 
   def test_init(self):
     sock = TcpSocket()
