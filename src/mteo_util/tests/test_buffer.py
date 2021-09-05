@@ -30,7 +30,7 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from unittest import TestCase
+import unittest
 
 from mteo_util import (
   Buffer,
@@ -38,13 +38,13 @@ from mteo_util import (
   StringBuffer,
 )
 
-class TestBuffer(TestCase):
+class TestBuffer(unittest.TestCase):
 
   def test_init(self):
     buffer = Buffer()
     self.assertTrue(buffer.length() == 0)
 
-class TestByteBuffer(TestCase):
+class TestByteBuffer(unittest.TestCase):
 
   def test_init(self):
     buffer = ByteBuffer()
@@ -76,7 +76,7 @@ class TestByteBuffer(TestCase):
     self.assertTrue(buffer.value() == b'')
     self.assertTrue(buffer.length() == 0)
 
-class TestStringBuffer(TestCase):
+class TestStringBuffer(unittest.TestCase):
 
   def test_init(self):
     buffer = StringBuffer()
