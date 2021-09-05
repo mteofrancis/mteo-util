@@ -35,7 +35,7 @@ def assert_type(obj, type_name, arg=None):
   if obj_type.__name__ == type_name:
     return
 
-  message = f'invalid type (expecting {type_name}, got {obj_type.__name__}'
+  message = f'invalid type (expecting {type_name}, got {obj_type.__name__})'
   if arg:
     message = arg + ': ' + message
 
