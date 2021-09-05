@@ -30,14 +30,14 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from unittest import TestCase
+import unittest
 
 from mteo_util import (
   to_bytes,
   to_str,
 )
 
-class Test(TestCase):
+class Test(unittest.TestCase):
 
   def test_to_bytes(self):
     self.assertTrue(to_bytes('foo') == b'foo')
