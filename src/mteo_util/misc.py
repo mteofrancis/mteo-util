@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/misc.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
@@ -30,11 +30,12 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .buffer import *
-from .misc import *
-from .socket import *
-from .typing import *
+import sys
+
+## {{{ caller()
+def caller(frame=1):
+  return sys._getframe(frame).f_code.co_name
+## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :

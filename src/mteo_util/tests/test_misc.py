@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/tests/test_misc.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
@@ -30,11 +30,14 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
-from .bitmask import *
-from .buffer import *
-from .misc import *
-from .socket import *
-from .typing import *
+import unittest
+
+from mteo_util import caller
+
+class TestMisc(unittest.TestCase):
+
+  def test_caller(self):
+    self.assertTrue(caller(1) == 'test_caller')
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
