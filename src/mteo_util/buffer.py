@@ -30,6 +30,8 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
+from . import tlv
+
 ## {{{ class Buffer
 
 class Buffer:
@@ -40,12 +42,15 @@ class Buffer:
   _len = None
 
   def __init__(self, buf=None):
-    if not buf:
+    if buf is None:
       self._buf = []
       self._len = 0
-    else:
-      self._buf = [buf]
-      self._len = len(buf)
+      return
+
+    tlv.assert_types(buf, ['bytes', 'str'], arg='buf')
+
+    self._buf = [buf]
+    self._len = len(buf)
 
   def clear(self):
     self._buf = []
@@ -61,20 +66,14 @@ class Buffer:
 class ByteBuffer(Buffer):
 
   def __init__(self, buf=None):
-    if buf is None:
-      self._buf = []
-      self._len = 0
-      return
+    if buf is not None:
+      tlv.assert_type(buf, 'bytes', arg='buf')
 
-    if type(buf).__name__ != 'bytes':
-      raise TypeError(f'buf: invalid type (expecting bytes, got {type(buf).__name__})')
-
-    self._buf = [buf]
-    self._len = len(buf)
+    super().__init__(buf)
 
   def append(self, buf):
-    if type(buf).__name__ != 'bytes':
-      raise TypeError(f'buf: invalid type (expecting bytes, got {type(buf).__name__})')
+    tlv.assert_type(buf, 'bytes', arg='buf')
+
     self._buf.append(buf)
     self._len += len(buf)
 
@@ -91,20 +90,14 @@ class ByteBuffer(Buffer):
 class StringBuffer(Buffer):
 
   def __init__(self, buf=None):
-    if buf is None:
-      self._buf = []
-      self._len = 0
-      return
+    if buf is not None:
+      tlv.assert_type(buf, 'str', arg='buf')
 
-    if type(buf).__name__ != 'str':
-      raise TypeError(f'buf: invalid type (expecting str, got {type(buf).__name__})')
-
-    self._buf = [buf]
-    self._len = len(buf)
+    super().__init__(buf)
 
   def append(self, buf):
-    if type(buf).__name__ != 'str':
-      raise TypeError(f'buf: invalid type (expecting str, got {type(buf).__name__})')
+    tlv.assert_type(buf, 'str', arg='buf')
+
     self._buf.append(buf)
     self._len += len(buf)
 
@@ -112,6 +105,7 @@ class StringBuffer(Buffer):
     return ''.join(self._buf)
 
   def to_bytes(self, encoding='utf-8'):
+    tlv.assert_type(encoding, 'str', arg='encoding')
     return bytes(self.get(), encoding)
 
 ## class StringBuffer }}}
