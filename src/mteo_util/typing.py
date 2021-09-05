@@ -30,11 +30,15 @@
 
 ## }}} ---- [ Header ] -----------------------------------------------------------------------------
 
+## {{{ to_str()
 def to_str(obj, encoding='utf-8'):
   return str(obj, encoding)
+## }}}
 
+## {{{ to_bytes()
 def to_bytes(obj, encoding='utf-8'):
   return bytes(obj, encoding)
+## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
