@@ -32,6 +32,7 @@
 
 from .bitmask import *
 from .buffer import *
+from .io import *
 from .misc import *
 from .socket import *
 from .typing import *
