@@ -44,6 +44,7 @@ class Buffer:
   _buf = None
   _len = None
 
+  ## {{{ Buffer.__init__()
   def __init__(self, buf=None):
     if buf is None:
       self._buf = []
@@ -54,13 +55,18 @@ class Buffer:
 
     self._buf = [buf]
     self._len = len(buf)
+  ## }}}
 
+  ## {{{ Buffer.clear()
   def clear(self):
     self._buf = []
     self._len = 0
+  ## }}}
 
+  ## {{{ Buffer.length()
   def length(self):
     return self._len
+  ## }}}
 
 ## class Buffer }}}
 
@@ -68,25 +74,33 @@ class Buffer:
 
 class ByteBuffer(Buffer):
 
+  ## {{{ ByteBuffer.__init()
   def __init__(self, buf=None):
     if buf is not None:
       tlv.assert_type(buf, 'bytes', arg='buf')
 
     super().__init__(buf)
+  ## }}}
 
+  ## {{{ ByteBuffer.append()
   def append(self, buf):
     tlv.assert_type(buf, 'bytes', arg='buf')
 
     self._buf.append(buf)
     self._len += len(buf)
+  ## }}}
 
+  ## {{{ ByteBuffer.value()
   def value(self):
     return b''.join(self._buf)
+  ## }}}
 
+  ## {{{ ByteBuffer.to_str()
   def to_str(self, encoding='utf-8'):
     tlv.assert_type(encoding, 'str', arg='encoding')
 
     return typing.to_str(self.value(), encoding)
+  ## }}}
 
 ## class ByteBuffer }}}
 
@@ -94,25 +108,33 @@ class ByteBuffer(Buffer):
 
 class StringBuffer(Buffer):
 
+  ## {{{ StringBuffer.__init__()
   def __init__(self, buf=None):
     if buf is not None:
       tlv.assert_type(buf, 'str', arg='buf')
 
     super().__init__(buf)
+  ## }}}
 
+  ## {{{ StringBuffer.append()
   def append(self, buf):
     tlv.assert_type(buf, 'str', arg='buf')
 
     self._buf.append(buf)
     self._len += len(buf)
+  ## }}}
 
+  ## {{{ StringBuffer.value()
   def value(self):
     return ''.join(self._buf)
+  ## }}}
 
+  ## {{{ StringBuffer.to_bytes()
   def to_bytes(self, encoding='utf-8'):
     tlv.assert_type(encoding, 'str', arg='encoding')
 
     return typing.to_bytes(self.value(), encoding)
+  ## }}}
 
 ## class StringBuffer }}}
 
