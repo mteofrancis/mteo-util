@@ -2,7 +2,7 @@ SHELL = /bin/bash
 
 FIND	= $(shell type -P find)
 RM	= $(shell type -P rm)
-PIP     = $(shell type -P pip)
+PIP	= $(shell type -P pip)
 PYTHON	= $(shell type -P python)
 TWINE	= $(shell type -P twine)
 XARGS	= $(shell type -P xargs)
