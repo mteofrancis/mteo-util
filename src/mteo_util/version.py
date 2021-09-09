@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/version.py
+# mteo-util.git:/src/mteo_util/version.py
 ##
 
 # Major version number
