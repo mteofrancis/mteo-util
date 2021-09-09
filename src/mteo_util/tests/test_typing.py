@@ -37,14 +37,14 @@ from mteo_util import (
   to_str,
 )
 
-class Test(unittest.TestCase):
+class TestTyping(unittest.TestCase):
 
-  ## {{{ Test.test_to_bytes()
+  ## {{{ TestTyping.test_to_bytes()
   def test_to_bytes(self):
     self.assertTrue(to_bytes('foo') == b'foo')
   ## }}}
 
-  ## {{{ Test.test_to_str()
+  ## {{{ TestTyping.test_to_str()
   def test_to_str(self):
     self.assertTrue(to_str(b'foo') == 'foo')
   ## }}}
