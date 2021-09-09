@@ -36,8 +36,10 @@ from mteo_util import caller
 
 class TestMisc(unittest.TestCase):
 
+  ## {{{ TestMisc.test_caller()
   def test_caller(self):
     self.assertTrue(caller(1) == 'test_caller')
+  ## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
