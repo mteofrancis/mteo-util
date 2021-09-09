@@ -2,15 +2,16 @@ SHELL = /bin/bash
 
 FIND	= $(shell type -P find)
 RM	= $(shell type -P rm)
-PIP	= $(shell type -P pip)
 PYTHON	= $(shell type -P python)
 TWINE	= $(shell type -P twine)
 XARGS	= $(shell type -P xargs)
 
 PACKAGE_NAME = mteo-util
 
+ALL_TARGETS = build
+
 .PHONY: all
-all:
+all: $(ALL_TARGETS)
 
 .PHONY: check
 check: check-syntax run-testsuite
@@ -41,11 +42,7 @@ upload:
 
 .PHONY: install
 install:
-	@$(PIP) install .
-
-.PHONY: uninstall
-uninstall:
-	@$(PIP) uninstall -y $(PACKAGE_NAME)
+	@$(PYTHON) setup.py install
 
 .PHONY: clean
 clean:
