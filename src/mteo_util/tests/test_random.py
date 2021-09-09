@@ -38,10 +38,12 @@ from mteo_util import random_uuid
 
 class TestRandom(unittest.TestCase):
 
+  ## {{{ TestRandom.test_random_uuid()
   def test_random_uuid(self):
     uuid1 = random_uuid()
     uuid2 = uuid.uuid4()
     self.assertTrue(len(uuid1) == len(str(uuid2)))
+  ## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
