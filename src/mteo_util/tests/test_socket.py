@@ -38,10 +38,13 @@ import socket
 
 class TestTcpSocket(unittest.TestCase):
 
+  ## {{{ TestTcpSocket.test_init()
   def test_init(self):
     sock = TcpSocket()
     sock.close()
+  ## }}}
 
+  ## {{{ TestTcpSocket.test_init_arg()
   def test_init_arg(self):
     _sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     fd = _sock.fileno()
@@ -49,26 +52,34 @@ class TestTcpSocket(unittest.TestCase):
     self.assertTrue(sock.fileobj() == _sock)
     self.assertTrue(sock.fileno() == fd)
     sock.close()
+  ## }}}
 
+  ## {{{ TestTcpSocket.test_close()
   def test_close(self):
     sock = TcpSocket()
     sock.close()
     self.assertTrue(sock.fileobj() == None)
     self.assertTrue(sock.fileno() == None)
+  ## }}}
 
+  ## {{{ TestTcpSocket.test_fileobj()
   def test_fileobj(self):
     sock = TcpSocket()
     fileobj_type = type(sock.fileobj())
     sock.close()
     self.assertTrue(fileobj_type.__name__ == 'socket')
+  ## }}}
 
+  ## {{{ TestTcpSocket.test_fileno()
   def test_fileno(self):
     sock = TcpSocket()
     fd = sock.fileno()
     sock.close()
     self.assertTrue(type(fd).__name__ == 'int')
     self.assertTrue(fd > -1)
+  ## }}}
 
+  ## {{{ TestTcpSocket.test_blocking()
   def test_blocking(self):
     sock = TcpSocket()
 
@@ -77,6 +88,7 @@ class TestTcpSocket(unittest.TestCase):
 
     with self.assertRaises(TypeError):
       sock.blocking('foo')
+  ## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
