@@ -32,7 +32,7 @@
 
 import unittest
 
-from mteo_util import (
+from .. import (
   to_bytes,
   to_str,
 )
