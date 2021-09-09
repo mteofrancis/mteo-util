@@ -32,9 +32,9 @@
 
 import unittest
 
-from .. import TcpSocket
-
 import socket
+
+from .. import TcpSocket
 
 class TestTcpSocket(unittest.TestCase):
 
