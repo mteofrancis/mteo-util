@@ -34,7 +34,7 @@ import unittest
 
 import time
 
-from mteo_util import (
+from .. import (
   time_now,
   time_diff,
 )
