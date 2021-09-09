@@ -34,8 +34,8 @@ from .bitmask import *
 from .buffer import *
 from .io import *
 from .misc import *
-from .socket import *
 from .random import *
+from .socket import *
 from .string import *
 from .time import *
 from .typing import *
