@@ -32,7 +32,7 @@
 
 import unittest
 
-from mteo_util import index
+from .. import index
 
 class TestString(unittest.TestCase):
 
