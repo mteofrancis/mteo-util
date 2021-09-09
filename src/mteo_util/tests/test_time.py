@@ -41,6 +41,7 @@ from mteo_util import (
 
 class TestTime(unittest.TestCase):
 
+  ## {{{ TestTime.test_time_now()
   def test_time_now(self):
     self.assertTrue(type(time_now()) == type(int()))
     self.assertTrue(time_now() > 0)
@@ -48,12 +49,15 @@ class TestTime(unittest.TestCase):
     t1 = int(time.time())
     t2 = time_now()
     self.assertTrue(t1 == t2 or t1 + 1 == t2)
+  ## }}}
 
+  ## {{{ TestTime.test_time_diff()
   def test_time_diff(self):
     now = time_now()
     self.assertTrue(time_diff(now, now) == 0)
     then = now - 5
     self.assertTrue(time_diff(now, then) == 5)
+  ## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
