@@ -34,7 +34,7 @@ import unittest
 
 import uuid
 
-from mteo_util import random_uuid
+from .. import random_uuid
 
 class TestRandom(unittest.TestCase):
 
