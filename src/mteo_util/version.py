@@ -12,10 +12,10 @@ MAJOR = 0
 MINOR = 0
 
 # Patch level
-PATCH = 2
+PATCH = 3
 
 # Extra version information
-EXTRA = ''
+EXTRA = 'rc2'
 
 def get():
   return f'{MAJOR}.{MINOR}.{PATCH}{EXTRA}'
