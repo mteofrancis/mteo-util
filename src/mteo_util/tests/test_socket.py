@@ -32,7 +32,7 @@
 
 import unittest
 
-from mteo_util import TcpSocket
+from .. import TcpSocket
 
 import socket
 
