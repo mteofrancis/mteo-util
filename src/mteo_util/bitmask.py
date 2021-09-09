@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ##
-# mteo-util.git:/<FILE>
+# mteo-util.git:/src/mteo_util/bitmask.py
 ##
 
 ## {{{ ---- [ Header ] -----------------------------------------------------------------------------
