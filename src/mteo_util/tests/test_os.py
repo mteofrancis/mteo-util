@@ -39,33 +39,41 @@ from mteo_util import (
 
 class TestOsUser(unittest.TestCase):
 
+  ## {{{ TestOsUser.test_init_name_kwarg()
   def test_init_name_kwarg(self):
     user = OsUser(name='root')
     self.assertTrue(user.name == 'root')
     self.assertTrue(user.passwd == 'x')
     self.assertTrue(user.uid == 0)
     self.assertTrue(user.gid == 0)
+  ## }}}
 
+  ## {{{ TestOsGroup.test_init_uid_kwarg()
   def test_init_uid_kwarg(self):
     user = OsUser(uid=0)
     self.assertTrue(user.name == 'root')
     self.assertTrue(user.passwd == 'x')
     self.assertTrue(user.uid == 0)
     self.assertTrue(user.gid == 0)
+  ## }}}
 
 class TestOsGroup(unittest.TestCase):
 
+  ## {{{ TestOsGroup.test_init_name_kwarg()
   def test_init_name_kwarg(self):
     group = OsGroup(name='root')
     self.assertTrue(group.name == 'root')
     self.assertTrue(group.passwd == 'x')
     self.assertTrue(group.gid == 0)
+  ## }}}
 
+  ## {{{ TestOsGroup.test_init_uid_kwarg()
   def test_init_uid_kwarg(self):
     group = OsGroup(gid=0)
     self.assertTrue(group.name == 'root')
     self.assertTrue(group.passwd == 'x')
     self.assertTrue(group.gid == 0)
+  ## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
