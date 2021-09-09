@@ -32,7 +32,7 @@
 
 import unittest
 
-from mteo_util import caller
+from .. import caller
 
 class TestMisc(unittest.TestCase):
 
