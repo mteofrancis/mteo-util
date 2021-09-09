@@ -36,9 +36,11 @@ from mteo_util import index
 
 class TestString(unittest.TestCase):
 
+  ## {{{ TestString.test_index()
   def test_index(self):
     self.assertTrue(index('foo', 'f') == 0)
     self.assertTrue(index('foo', 'F') == -1)
+  ## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
