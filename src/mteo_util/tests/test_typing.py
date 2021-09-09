@@ -39,11 +39,15 @@ from mteo_util import (
 
 class Test(unittest.TestCase):
 
+  ## {{{ Test.test_to_bytes()
   def test_to_bytes(self):
     self.assertTrue(to_bytes('foo') == b'foo')
+  ## }}}
 
+  ## {{{ Test.test_to_str()
   def test_to_str(self):
     self.assertTrue(to_str(b'foo') == 'foo')
+  ## }}}
 
 ##
 # vim: ts=2 sw=2 tw=100 et fdm=marker :
