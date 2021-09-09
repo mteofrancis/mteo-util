@@ -11,7 +11,6 @@ PACKAGE_NAME = mteo-util
 
 .PHONY: all
 all:
-	@$(PYTHON) -m build
 
 .PHONY: check
 check: check-syntax run-testsuite
@@ -31,6 +30,10 @@ run-testsuite:
 	@echo "Running test suite..."
 	@echo
 	@$(PYTHON) setup.py nosetests
+
+.PHONY: build
+build:
+	@$(PYTHON) -m build
 
 .PHONY: upload
 upload:
